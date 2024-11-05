@@ -1,0 +1,19 @@
+<div class="fig_space_container">
+    <div
+        class="spaceBox"
+        style="height: calc(1em * {space or 0}); display: {{ "default" if space else "none" }};
+        background-color: {'lightgreen' if answers else 'white' }"
+    >
+
+    {answer if answers else ""}
+
+    </div>
+
+    {{ if figure is not None }}
+    <div class="img_container">
+        <img src="data:image/png;base64, {{ figure.decode('utf-8') }}"
+            style=" height: calc(1em * {{ space or 0 }})" />
+    </div>
+    {{ endif }}
+
+</div>
