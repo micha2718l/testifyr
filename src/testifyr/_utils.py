@@ -1,7 +1,7 @@
 from pathlib import Path
 from IPython.display import Markdown, display
 
-__all__ = ["_styled_print"]
+__all__ = ["_styled_print", "style_string", "_pluralize", "Element"]
 
 # style_string = ""
 testify_dir = Path(__file__).parent
