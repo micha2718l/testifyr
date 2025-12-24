@@ -1,0 +1,31 @@
+{% if problem_type == 'multiple_choice' %}
+<div id="choicesContainer">
+    <h3>Choices</h3>
+    <div class="choices-list">
+        <!-- Initial choice -->
+        {% include 'partials/choice.html' %}
+    </div>
+    <button type="button" class="btn btn-secondary" hx-get="/add-choice" hx-target=".choices-list" hx-swap="beforeend">
+        Add Choice
+    </button>
+</div>
+
+{% elif problem_type == 'work_problem' %}
+<div id="questionsContainer">
+    <h3>Questions</h3>
+    <div class="questions-list">
+        <!-- Initial question -->
+        {% include 'partials/question.html' %}
+    </div>
+    <button type="button" class="btn btn-secondary" hx-get="/add-question" hx-target=".questions-list"
+        hx-swap="beforeend">
+        Add Question
+    </button>
+</div>
+
+{% elif problem_type == 'bonus' %}
+<div class="input-group">
+    <label for="answer">Answer</label>
+    <input type="text" id="answer" name="answer" class="input" placeholder="Correct answer">
+</div>
+{% endif %}

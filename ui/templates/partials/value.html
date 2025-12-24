@@ -1,0 +1,14 @@
+<!-- Value Builder -->
+<div class="value-builder">
+    <h3>Insert Value</h3>
+    <div class="grid">
+        <input type="number" id="valueNumber" placeholder="Value" class="input">
+        <input type="text" id="valueUnit" placeholder="Unit (e.g., m/s)" class="input">
+        <input type="number" id="valueSigFigs" value="3" min="1" placeholder="Sig Figs" class="input">
+        <input type="number" id="valuePreZeros" value="0" min="0" placeholder="Pre-zeros" class="input">
+        <button type="button" class="btn btn-primary" hx-post="/insert-value" hx-include="closest div"
+            hx-target="#statement" hx-swap="beforeend">
+            Insert Value
+        </button>
+    </div>
+</div>

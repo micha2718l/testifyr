@@ -1,0 +1,29 @@
+<script src="https://unpkg.com/htmx.org@2.0.3"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='testifyr.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+
+<form name="everything" class="problemInput">
+    <div class="problemInput__header">
+        <h1>Testifyr</h1>
+        <p>Testifyr is a tool that helps you to create physics problems for your students.</p>
+    </div>
+    <div>
+        <label for="problem_statement">Statement</label>
+        <textarea name="problem_statement" placeholder="Statement"></textarea>
+    </div>
+    <div>
+        <label for="mass_truck">Mass of the truck</label>
+        <input type="number" name="mass_truck" placeholder="mass_truck">
+    </div>
+    <div>
+        <label for="mass_bug">Mass of the bug</label>
+        <input type="number" name="mass_bug" placeholder="mass_bug">
+    </div>
+    <button hx-post="/preview" hx-swap="innerHTML" hx-target="#problem">
+        Preview
+    </button>
+</form>
+
+<div id="problem" class="problemPreview">
+    <p>Problem will be displayed here</p>
+</div>

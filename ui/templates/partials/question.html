@@ -1,0 +1,10 @@
+<div class="question-item">
+    <div class="question-header">
+        <input type="number" name="points_{{ question_num }}" value="3" min="0" class="input" placeholder="Points">
+        <button type="button" class="btn btn-danger" hx-target="closest div" hx-swap="outerHTML" hx-delete="">
+            Remove
+        </button>
+    </div>
+    <textarea name="question_{{ question_num }}" class="input" placeholder="Question"></textarea>
+    <input type="text" name="answer_{{ question_num }}" class="input" placeholder="Answer">
+</div>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Problem Builder</title>
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+    <style>
+        /* Base styles */
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: system-ui, -apple-system, sans-serif;
+            background-color: #f5f7fa;
+            color: #1a1a1a;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Responsive grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        /* Form elements */
+        .input-group {
+            margin-bottom: 1rem;
+        }
+
+        .input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn-primary {
+            background-color: #4299e1;
+            color: white;
+            border: none;
+        }
+
+        .btn-secondary {
+            background-color: white;
+            color: #4a5568;
+            border: 1px solid #e2e8f0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Test Problem Builder</h1>
+            <p>Create and organize your test problems</p>
+        </header>
+
+        <form id="problemForm" hx-post="/add-problem" hx-target="#problemList">
+            <div class="grid">
+                Multiple Choice Problem
+
+                <div class="input-group" id="pointsSection">
+                    <label for="points">Points</label>
+                    <input type="number" id="points" name="points" value="{{ mc.points }}" min="0" class="input">
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="statement">Problem Statement</label>
+                <textarea id="statement" name="statement" class="input" rows="4">{{ mc.statement }}</textarea>
+            </div>
+
+            {{ for choice in mc.choices }}
+            <div class="choice-item">
+                <input type="checkbox" name="correct_{{ choice_num }}" class="checkbox">
+                <input type="text" name="choice_{{ choice_num }}" class="input" placeholder="Choice {{ choice_num }}">
+                <button type="button" class="btn btn-danger" hx-target="closest div" hx-swap="outerHTML" hx-delete="">
+                    Remove
+                </button>
+            </div>
+            {{ end }}
+            <div class="input-group">
+                <label for="figure">Figure (Optional)</label>
+                <input type="file" id="figure" name="figure" accept="image/*" class="input">
+            </div>
+
+            <div class="actions">
+                <button type="button" class="btn btn-secondary" hx-post="/preview-problem" hx-include="form"
+                    hx-target="#previewContent">
+                    Preview
+                </button>
+                <button type="submit" class="btn btn-primary">Add Problem</button>
+            </div>
+        </form>
+
+        <div id="previewContent" class="preview-section">
+            <!-- Preview content will be loaded here -->
+        </div>
+
+    </div>
+</body>
+
+</html>

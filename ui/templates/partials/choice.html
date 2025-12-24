@@ -1,0 +1,7 @@
+<div class="choice-item">
+    <input type="checkbox" name="correct_{{ choice_num }}" class="checkbox">
+    <input type="text" name="choice_{{ choice_num }}" class="input" placeholder="Choice {{ choice_num }}">
+    <button type="button" class="btn btn-danger" hx-target="closest div" hx-swap="outerHTML" hx-delete="">
+        Remove
+    </button>
+</div>

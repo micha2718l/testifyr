@@ -1,0 +1,7 @@
+<div class="problems-list">
+    {% for problem in problems %}
+    <div class="problem-item">
+        {{ problem.html()|safe }}
+    </div>
+    {% endfor %}
+</div>
